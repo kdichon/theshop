@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Bookmark extends Model
 {
@@ -14,4 +17,16 @@ class Bookmark extends Model
     ];
 
     use HasFactory;
+
+    // Liaison 1 Favori a un produit
+    public function product(): BelongsTo
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    // Liaison 1 Favori a un utilisateur
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }
