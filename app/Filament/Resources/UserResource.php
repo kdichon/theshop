@@ -23,6 +23,13 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\Select::make('admin')
+                    ->options([
+                        1 => 'Admin',
+                        0 => 'User',
+                    ])
+                    ->default(0)
+                    ->required(),
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
@@ -61,14 +68,14 @@ class UserResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -76,5 +83,5 @@ class UserResource extends Resource
             'create' => Pages\CreateUser::route('/create'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
-    }    
+    }
 }
